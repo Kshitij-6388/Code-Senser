@@ -1,0 +1,72 @@
+.main {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #0d1117;
+  min-height: 100vh;
+  color: #c9d1d9;
+  font-family: "Fira Code", monospace;
+}
+
+.left, .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-container, .output-wrapper {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+}
+
+.editor-header, .output-header {
+  padding: 1rem;
+  background-color: #282c34;
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.review-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: 600;
+}
+
+.review-button:hover {
+  background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+}
+
+.review-button:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  margin-top: 1rem;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
