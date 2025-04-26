@@ -28,7 +28,7 @@ function App() {
       setReview(response.data);
     } catch (err) {
       console.error('Error fetching review:', err.message);
-      setError('❌ Failed to fetch code review. Please try again.');
+      setError('🚨 Could not connect to the review server. Please make sure your backend is running.');
       setReview('');
     } finally {
       setLoading(false);
@@ -55,7 +55,7 @@ function App() {
     <main className="main">
       <section className="left">
         <div className="editor-container">
-          <div className="editor-header">Code Editor</div>
+          <div className="editor-header">📝 Code Editor</div>
           <Editor
             value={code}
             onValueChange={setCode}
@@ -71,7 +71,7 @@ function App() {
               caretColor: "#ffffff",
               overflow: "auto",
               outline: "none",
-              whiteSpace: "pre-wrap", // This allows wrapping and better handling of lines
+              whiteSpace: "pre-wrap",
             }}
           />
         </div>
@@ -84,19 +84,24 @@ function App() {
           {loading ? (
             <>
               <span className="spinner" />
-              &nbsp;Reviewing...
+              &nbsp;Analyzing your code, please wait...
             </>
           ) : (
-            '🚀 Review Code'
+            '🛠️ Submit Code for AI Review'
           )}
         </button>
 
-        {error && <div className="error-message">{error}</div>}
+        {error && (
+          <div className="error-message">
+            🚨 Oops! Something went wrong while fetching the review.<br />
+            Please check your server connection and try again.
+          </div>
+        )}
       </section>
 
       <section className="right">
         <div className="output-wrapper">
-          <div className="output-header">Review Output</div>
+          <div className="output-header">🧠 Review Output</div>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -126,7 +131,9 @@ function App() {
               }
             }}
           >
-            {review || (loading ? '⌛ Generating code review...' : '💬 Submit code to get feedback!')}
+            {review || (loading
+              ? '⌛ Our AI is carefully analyzing your code...'
+              : '📝 Write or paste your code on the left, then click "Submit" to get an instant AI-powered review!')}
           </ReactMarkdown>
         </div>
       </section>
